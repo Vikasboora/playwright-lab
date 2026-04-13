@@ -1,3 +1,7 @@
+![Error Screenshot](/tests/dialog-box/images/image.png)
+
+## This issue comes when the waitForTimeout was not added. [page.on( ) case]
+
 This is a classic Playwright **race condition** with dialog handling. The error "Test ended" at `dialog.accept()` means the test runner finished before the async dialog handler could complete — it works in debug mode only because the slower execution masks the timing issue.
 
 **Root cause:** `page.on('dialog', async callback)` — Playwright does **not** await async callbacks inside event listeners. The test ends before `dialog.accept()` resolves.
