@@ -22,15 +22,8 @@ test.beforeEach(async ({ request }) => {
   id = createObjectResponseData?.id;
 });
 
-test('PATCH API method Handling using Playwright request', async ({ request }) => {
-  const response = await request.patch(`https://api.restful-api.dev/objects/${id}`, {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    data: {
-      name: 'Framework 13 pro (Assembled)',
-    },
-  });
+test('Delete API method Handling using Playwright request', async ({ request }) => {
+  const response = await request.delete(`https://api.restful-api.dev/objects/${id}`);
 
   const responseData = await response.json();
   console.log(responseData);
